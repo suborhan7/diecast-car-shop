@@ -24,7 +24,10 @@ export function Header() {
       <div className="container header-row">
         <Link href="/" className="logo" onClick={() => setOpen(false)}>
           <span className="logo-mark">BDC</span>
-          {site.name}
+          <span className="logo-text">
+            <span className="logo-a">{site.name.split(" ")[0]}</span>{" "}
+            <span className="logo-b">{site.name.split(" ").slice(1).join(" ")}</span>
+          </span>
         </Link>
         <nav className={`nav ${open ? "open" : ""}`}>
           {NAV.map((n) => (

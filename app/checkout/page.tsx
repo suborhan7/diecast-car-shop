@@ -7,7 +7,32 @@ import { useCart } from "@/components/CartProvider";
 import { getProductById } from "@/lib/products";
 import { formatPrice, PAYMENT_METHODS, shippingFor, site, whatsappLink, type Area, type PaymentMethod } from "@/lib/site";
 
-type Placed = { id: string; message: string; total: number; deposit: number; payment: PaymentMethod };
+type Placed = { id: string; message: string; total: number; deposit: number; payment: PaymentMethod; phone: string };
+
+function TrxForm({ id, phone }: { id: string; phone: string }) {
+  const [trx, setTrx] = useState("");
+  const [state, setState] = useState<"idle" | "busy" | "done" | string>("idle");
+  async function send(e: React.FormEvent) {
+    e.preventDefault();
+    setState("busy");
+    const res = await fetch("/api/order/pay", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, phone, trxId: trx }),
+    }).catch(() => null);
+    const data = res ? await res.json().catch(() => ({})) : {};
+    setState(res?.ok ? "done" : data.error ?? "Something went wrong. Please send the ID on WhatsApp.");
+  }
+  if (state === "done")
+    return <p className="trx-done">Thanks! We&apos;ll check transaction {trx.toUpperCase()} and confirm your payment.</p>;
+  return (
+    <form className="trx-form" onSubmit={send}>
+      <input value={trx} onChange={(e) => setTrx(e.target.value)} placeholder="Transaction ID, e.g. 9K7A3B2C1D" required minLength={6} aria-label="Transaction ID" />
+      <button className="btn btn-primary" disabled={state === "busy"}>{state === "busy" ? "Sending…" : "I've paid"}</button>
+      {state !== "idle" && state !== "busy" && <p className="error">{state}</p>}
+    </form>
+  );
+}
 
 export default function Checkout() {
   const { lines, ready, clear } = useCart();
@@ -49,7 +74,7 @@ export default function Checkout() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not place the order.");
-      setPlaced({ ...data, payment });
+      setPlaced({ ...data, payment, phone: String(f.get("phone")).replace(/[\s-]/g, "") });
       clear();
       window.scrollTo({ top: 0 });
     } catch (err) {
@@ -83,8 +108,9 @@ export default function Checkout() {
                   Order total <strong>{formatPrice(placed.total)}</strong>.{" "}
                 </>
               )}
-              After we confirm, send it to bKash {site.bkash} or Nagad {site.nagad} with <strong>{placed.id}</strong>{" "}
-              as the reference.
+              After we confirm, use <strong>Send Money</strong> to bKash or Nagad <strong>{site.bkash}</strong>{" "}
+              with <strong>{placed.id}</strong> as the reference, then enter the transaction ID below.
+              <TrxForm id={placed.id} phone={placed.phone} />
             </div>
           )}
           <pre className="order-text">{placed.message}</pre>

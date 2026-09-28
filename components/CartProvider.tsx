@@ -15,6 +15,8 @@ type CartCtx = {
   toast: string | null;
   wishlist: string[];
   toggleWish: (id: string) => void;
+  /** Live stock left after other customers' orders; undefined until loaded. */
+  available: (id: string, fallback: number) => number;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
@@ -26,6 +28,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const [stock, setStock] = useState<Record<string, number> | null>(null);
+
+  useEffect(() => {
+    fetch("/api/stock", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((s) => s && setStock(s))
+      .catch(() => {});
+  }, []);
+  const available = useCallback((id: string, fallback: number) => stock?.[id] ?? fallback, [stock]);
 
   useEffect(() => {
     try {
@@ -87,8 +98,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       toast,
       wishlist,
       toggleWish,
+      available,
     }),
-    [lines, ready, add, setQty, remove, clear, toast, wishlist, toggleWish],
+    [lines, ready, add, setQty, remove, clear, toast, wishlist, toggleWish, available],
   );
 
   return (

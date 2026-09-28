@@ -6,12 +6,19 @@ import type { Product } from "@/lib/types";
 import { useCart } from "./CartProvider";
 
 export function CardActions({ product }: { product: Product }) {
-  const { add, lines } = useCart();
+  const { add, lines, available } = useCart();
   const router = useRouter();
   const [added, setAdded] = useState(false);
   const inCart = lines.find((l) => l.id === product.id)?.qty ?? 0;
-  const full = inCart >= product.stock;
+  const left = available(product.id, product.stock);
+  const full = inCart >= left;
   if (product.status === "sold-out" || product.stock <= 0) return null;
+  if (left <= 0)
+    return (
+      <div className="card-actions">
+        <button className="btn btn-sm" disabled>Sold out</button>
+      </div>
+    );
 
   const stop = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -25,7 +32,7 @@ export function CardActions({ product }: { product: Product }) {
         onClick={(e) => {
           stop(e);
           if (full) return;
-          add(product.id, 1, product.stock);
+          add(product.id, 1, left);
           setAdded(true);
           setTimeout(() => setAdded(false), 1800);
         }}
@@ -36,7 +43,7 @@ export function CardActions({ product }: { product: Product }) {
         className="btn btn-outline btn-sm"
         onClick={(e) => {
           stop(e);
-          if (!full) add(product.id, 1, product.stock);
+          if (!full) add(product.id, 1, left);
           router.push("/checkout");
         }}
       >

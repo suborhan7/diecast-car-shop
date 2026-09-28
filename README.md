@@ -24,17 +24,27 @@ condition grade (`score` 5–10 on the C-scale, plus `packaging` and grader `not
 
 ## Orders and payment
 
-Customers place an order, then send it to your WhatsApp with one tap. You confirm by phone, and they
-pay cash on delivery, by bKash or by Nagad. Prices and stock are always re-checked on the server.
+1. The customer places an order (no online payment). It's saved, the cars are reserved so nobody else can
+   buy them, and the customer sends it to your WhatsApp with one tap.
+2. You call or message them to confirm.
+3. They pay cash on delivery, or use bKash/Nagad Send Money and type the transaction ID on the site.
+4. You check that transaction ID against the SMS in your bKash/Nagad app, then press **Mark paid**.
 
-Set your numbers in `lib/site.ts` (`whatsapp`, `bkash`, `nagad`, `phone`, `messenger`).
-Optionally set `ORDER_WEBHOOK_URL` to also receive every order as JSON (e.g. a Google Sheet or Discord).
+The orders page is at **/admin** (password = `ADMIN_PASSWORD`). It shows who ordered what, their phone
+and address, who has paid, who still owes, and lets you confirm, mark paid, shipped, delivered or cancel.
+Cancelling puts the cars back on sale.
+
+Numbers for WhatsApp, bKash and Nagad are in `lib/site.ts`.
 
 ## Host it free on Vercel
 
 1. Sign in at vercel.com with GitHub.
 2. "Add New… > Project", import this repository, keep the defaults, and Deploy.
-3. Every push to `main` redeploys the site automatically.
+3. In the project: **Settings → Environment Variables**, add `ADMIN_PASSWORD`.
+4. In the project: **Storage → Create Database → Upstash for Redis** (free), connect it to the project.
+5. **Deployments → ⋯ → Redeploy** so the new settings take effect.
+
+Every push to `main` redeploys the site automatically.
 
 ## Product photos
 

@@ -6,11 +6,12 @@ import type { Product } from "@/lib/types";
 import { useCart } from "./CartProvider";
 
 export function AddToCart({ product }: { product: Product }) {
-  const { add, lines } = useCart();
+  const { add, lines, available: live } = useCart();
   const [qty, setQty] = useState(1);
   const inCart = lines.find((l) => l.id === product.id)?.qty ?? 0;
-  const available = Math.max(0, product.stock - inCart);
-  const soldOut = product.status === "sold-out" || product.stock <= 0;
+  const stock = live(product.id, product.stock);
+  const available = Math.max(0, stock - inCart);
+  const soldOut = product.status === "sold-out" || stock <= 0;
 
   if (soldOut) return <button className="btn btn-lg" disabled>Sold out</button>;
 
@@ -23,7 +24,7 @@ export function AddToCart({ product }: { product: Product }) {
           <button onClick={() => setQty((q) => Math.min(available || 1, q + 1))} aria-label="Increase">+</button>
         </div>
       )}
-      <button className="btn btn-lg btn-primary" disabled={available === 0} onClick={() => add(product.id, qty, product.stock)}>
+      <button className="btn btn-lg btn-primary" disabled={available === 0} onClick={() => add(product.id, qty, stock)}>
         {available === 0 ? "All in your cart" : product.status === "preorder" ? "Preorder now" : "Add to cart"}
       </button>
       {inCart > 0 && (

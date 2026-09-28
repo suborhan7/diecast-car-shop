@@ -3,9 +3,9 @@ export const site = {
   name: "Bengal Diecast Club",
   tagline: "Hand-graded Hot Wheels, die-cast and RC for collectors in Bangladesh",
   email: "hello@example.com",
-  phone: "+880 1XXX-XXXXXX",
+  phone: "+880 1932-820068",
   /** WhatsApp number in international format, digits only. Orders are sent here. */
-  whatsapp: "8801000000000",
+  whatsapp: "8801932820068",
   /** Facebook page username for the Messenger button (m.me/<this>). */
   messenger: "yourpage",
   facebook: "https://facebook.com/yourpage",
@@ -16,8 +16,8 @@ export const site = {
   preorderDepositPct: 30,
   /** Flash sale: products with a compareAtPrice show in a countdown section until this time. Set to null to hide it. */
   flashSaleEndsAt: null as string | null,
-  bkash: "01XXXXXXXXX (Personal)",
-  nagad: "01XXXXXXXXX (Personal)",
+  bkash: "01932820068",
+  nagad: "01932820068",
 };
 
 export const CATEGORIES = [
@@ -36,8 +36,8 @@ export const PRICE_BRACKETS = [
 
 export const PAYMENT_METHODS = [
   { id: "cod", name: "Cash on Delivery", note: "Pay the rider when your order arrives." },
-  { id: "bkash", name: "bKash", note: "Send money after we confirm your order by phone." },
-  { id: "nagad", name: "Nagad", note: "Send money after we confirm your order by phone." },
+  { id: "bkash", name: "bKash", note: "Send Money after we confirm your order by phone." },
+  { id: "nagad", name: "Nagad", note: "Send Money after we confirm your order by phone." },
 ] as const;
 
 export type PaymentMethod = (typeof PAYMENT_METHODS)[number]["id"];

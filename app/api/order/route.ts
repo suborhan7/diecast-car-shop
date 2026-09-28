@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { BD_PHONE, orderMessage, priceOrder, type OrderInput } from "@/lib/order";
+import { BD_PHONE, priceOrder, type OrderInput } from "@/lib/order";
+import { createOrder } from "@/lib/orders";
 import { PAYMENT_METHODS } from "@/lib/site";
 
 const clean = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
@@ -27,9 +28,9 @@ export async function POST(req: Request) {
   const priced = priceOrder(input.lines, input.area);
   if ("error" in priced) return NextResponse.json({ error: priced.error }, { status: 409 });
 
-  const d = new Date();
-  const id = `BDC-${d.toISOString().slice(2, 10).replace(/-/g, "")}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
-  const message = orderMessage(id, input, priced);
+  const order = await createOrder(input, priced);
+  if ("error" in order) return NextResponse.json({ error: order.error }, { status: 409 });
+  const { id, message } = order;
 
   // Optional: forward every order to a webhook (Google Sheets Apps Script, Discord, Make, Zapier…).
   const hook = process.env.ORDER_WEBHOOK_URL;

@@ -472,3 +472,54 @@ input, select { font: inherit; }
   .cart-btn, .menu-btn { width: 38px; height: 38px; }
   .menu-btn { padding: 10px 9px; }
 }
+
+/* ---- Payment report + admin ---- */
+.trx-form { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.trx-form input { flex: 1; min-width: 180px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); text-transform: uppercase; }
+.trx-form .error { flex-basis: 100%; }
+.trx-done { margin: 10px 0 0; color: var(--green); font-weight: 600; }
+.admin-login { max-width: 420px; margin: 40px auto; }
+.admin-login h1 { font-size: 24px; }
+.notice-warn { border-left-color: #f59e0b; }
+.admin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+.admin-stats div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; }
+.admin-stats strong { font-size: 22px; }
+.admin-stats span { color: var(--muted); font-size: 13px; }
+.admin-tabs { margin-bottom: 16px; }
+.admin-tabs .pill { display: inline-block; }
+.admin-list { display: flex; flex-direction: column; gap: 14px; }
+.order { gap: 10px; }
+.order-cancelled { opacity: .6; }
+.order-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.order-badges { display: flex; gap: 6px; }
+.st-new { background: #e8efff; color: #1f5eff; }
+.st-confirmed { background: #fff5e0; color: #8a5a00; }
+.st-shipped { background: #efe7ff; color: #6d28d9; }
+.st-delivered { background: #e7f6ee; color: #0b6b3c; }
+.st-cancelled { background: #f1f2f4; color: #4a5260; }
+.pay-unpaid { background: #fdecec; color: #c62828; }
+.pay-claimed { background: #fff5e0; color: #8a5a00; }
+.pay-paid { background: #e7f6ee; color: #0b6b3c; }
+.order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.order-contact a { color: var(--blue); font-weight: 600; }
+.order-items { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.order-items li { display: flex; gap: 8px; align-items: center; padding: 3px 0; }
+.order-items li > span:last-child { margin-left: auto; }
+.order-total { font-weight: 800; border-top: 1px solid var(--line); margin-top: 4px; padding-top: 6px !important; }
+.order-pay code { background: var(--bg); padding: 1px 6px; border-radius: 4px; }
+.order-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.paid-form { display: flex; gap: 6px; }
+.paid-form input { width: 100px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+.btn-danger { color: #c62828; border-color: #f3c4c4; background: transparent; }
+.order-history ul { margin: 6px 0 0; padding-left: 18px; }
+[data-theme="dark"] .st-new { background: rgba(96,165,250,.15); color: #93c5fd; }
+[data-theme="dark"] .st-confirmed, [data-theme="dark"] .pay-claimed { background: rgba(250,204,21,.12); color: #fde68a; }
+[data-theme="dark"] .st-shipped { background: rgba(181,123,255,.15); color: #d8bbff; }
+[data-theme="dark"] .st-delivered, [data-theme="dark"] .pay-paid { background: rgba(74,222,128,.12); color: #86efac; }
+[data-theme="dark"] .st-cancelled { background: rgba(148,163,184,.14); color: #cbd5e1; }
+[data-theme="dark"] .pay-unpaid { background: rgba(239,68,68,.15); color: #fca5a5; }
+[data-theme="dark"] .btn-danger { color: #fca5a5; border-color: #5b2323; }
+@media (max-width: 720px) {
+  .admin-stats { grid-template-columns: 1fr 1fr; }
+  .order-grid { grid-template-columns: 1fr; }
+}

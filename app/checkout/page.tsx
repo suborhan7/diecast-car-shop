@@ -45,6 +45,7 @@ export default function Checkout() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [note, setNote] = useState("");
   const [paste, setPaste] = useState("");
   const [filled, setFilled] = useState<string | null>(null);
 
@@ -55,6 +56,7 @@ export default function Checkout() {
     if (d.phone) (setPhone(d.phone), got.push("mobile number"));
     if (d.address) (setAddress(d.address), got.push("address"));
     if (d.area) (setArea(d.area), got.push(d.area === "inside" ? "Inside Dhaka" : "Outside Dhaka"));
+    if (d.note) (setNote(d.note), got.push("note"));
     setFilled(
       got.length
         ? `Filled ${got.length > 1 ? `${got.slice(0, -1).join(", ")} and ${got.at(-1)}` : got[0]}. Please check them below.`
@@ -211,7 +213,7 @@ export default function Checkout() {
             </div>
             <label className="field">
               <span>Note (optional)</span>
-              <input name="note" placeholder="Anything we should know?" />
+              <input name="note" placeholder="Anything we should know?" value={note} onChange={(e) => setNote(e.target.value)} />
             </label>
           </section>
           <section className="panel">

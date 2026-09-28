@@ -66,7 +66,7 @@ export default function CartPage() {
           <h3>Order summary</h3>
           {toFree > 0 && (
             <div className="ship-meter">
-              <span>Add {formatPrice(toFree)} more for free delivery</span>
+              <span>Add <strong>{formatPrice(toFree)}</strong> more for free delivery</span>
               <div><i style={{ width: `${Math.min(100, (subtotal / site.freeShippingThreshold) * 100)}%` }} /></div>
             </div>
           )}

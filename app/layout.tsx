@@ -7,6 +7,12 @@ import { Header } from "@/components/Header";
 import { THEME_SCRIPT } from "@/components/ThemeToggle";
 import { site } from "@/lib/site";
 import { siteUrl } from "@/lib/siteUrl";
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource-variable/archivo/wdth-italic.css";
+import "@fontsource/instrument-sans/latin-400.css";
+import "@fontsource/instrument-sans/latin-500.css";
+import "@fontsource/instrument-sans/latin-600.css";
+import "@fontsource/instrument-sans/latin-700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -21,10 +21,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="header">
-      <div className="bar">
-        Cash on delivery all over Bangladesh · bKash &amp; Nagad accepted · Free delivery over ৳
-        {site.freeShippingThreshold.toLocaleString("en-IN")}
-      </div>
       <div className="container header-row">
         <Link href="/" className="logo" onClick={() => setOpen(false)}>
           <span className="logo-mark">BDC</span>

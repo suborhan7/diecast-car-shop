@@ -1,15 +1,14 @@
 export const revalidate = 60;
 
 import Link from "next/link";
-import { CarArt } from "@/components/CarArt";
 import { Countdown } from "@/components/Countdown";
+import { HeroVideo } from "@/components/HeroVideo";
 import { ProductCard } from "@/components/ProductCard";
 import { inStock, preorders, products } from "@/lib/products";
 import { CATEGORIES, formatPrice, PRICE_BRACKETS, site } from "@/lib/site";
 
 export default function Home() {
   const live = inStock();
-  const heroes = live.filter((p) => p.images.length && p.featured).slice(0, 3);
   const featured = live.filter((p) => p.featured).slice(0, 8);
   const latest = [...live].sort((a, b) => (b.addedOn ?? "").localeCompare(a.addedOn ?? "")).slice(0, 8);
   const upcoming = preorders().slice(0, 4);
@@ -17,47 +16,53 @@ export default function Home() {
   const deals = saleOn ? live.filter((p) => p.compareAtPrice).slice(0, 4) : [];
   return (
     <>
-      <section className="hero">
-        <div className="container hero-grid">
-          <div>
-            <span className="eyebrow">New drop · {live.length} cars just landed</span>
-            <h1>
-              The die-cast your shelf deserves,
-              <br />
-              <span className="accent">photographed car by car.</span>
-            </h1>
-            <p className="lead">
-              Every car you see is the exact one you get: real photos, a condition grade for the car and the card,
-              cash on delivery anywhere in Bangladesh.
-            </p>
-            <div className="hero-cta">
-              <Link href="/shop" className="btn btn-lg btn-primary">Shop the collection</Link>
-              <Link href="/preorders" className="btn btn-lg btn-ghost-light">Preorder upcoming</Link>
+      <HeroVideo count={live.length} />
+
+      <section className="perks">
+        <div className="container perks-row">
+          <div className="perk perk-feature">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M3 9h15v13H3zM18 13h6l4 5v4H18z" />
+              <circle cx="9" cy="24" r="2.5" fill="currentColor" />
+              <circle cx="23" cy="24" r="2.5" fill="currentColor" />
+            </svg>
+            <div>
+              <strong>Free delivery over {formatPrice(site.freeShippingThreshold)}</strong>
+              <span>
+                {formatPrice(site.shipping.insideDhaka)} in Dhaka, {formatPrice(site.shipping.outsideDhaka)} outside
+              </span>
             </div>
           </div>
-          <div className="hero-art">
-            <div className="hero-glow" />
-            {heroes.map((p, i) => (
-              <Link key={p.id} href={`/product/${p.slug}`} className={`hero-card hero-card-${i}`}>
-                <CarArt product={p} />
-              </Link>
-            ))}
+          <div className="perk">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <rect x="4" y="8" width="24" height="16" rx="3" />
+              <circle cx="16" cy="16" r="3.5" />
+            </svg>
+            <div>
+              <strong>Cash on delivery</strong>
+              <span>Pay when the car arrives</span>
+            </div>
+          </div>
+          <div className="perk">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <rect x="9" y="3" width="14" height="26" rx="3" />
+              <path d="M14 24h4" />
+            </svg>
+            <div>
+              <strong>bKash and Nagad</strong>
+              <span>Send Money to {site.bkash}</span>
+            </div>
+          </div>
+          <div className="perk">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M16 3l3.6 7.3 8 1.2-5.8 5.6 1.4 8L16 21.3 8.8 25.1l1.4-8-5.8-5.6 8-1.2z" />
+            </svg>
+            <div>
+              <strong>Hand-graded C5 to C10</strong>
+              <span>Real photos of every car</span>
+            </div>
           </div>
         </div>
-      </section>
-
-      <section className="trust container">
-        {[
-          ["Real photos", "Every listing shows the exact car you'll receive"],
-          ["Cash on delivery", "All over Bangladesh. bKash and Nagad too"],
-          ["Boxed & padded", "Cards arrive flat, never loose in a mailer"],
-          ["Confirmed by phone", "We call before you pay a single taka"],
-        ].map(([t, d]) => (
-          <div key={t} className="trust-item">
-            <strong>{t}</strong>
-            <span>{d}</span>
-          </div>
-        ))}
       </section>
 
       {deals.length > 0 && (

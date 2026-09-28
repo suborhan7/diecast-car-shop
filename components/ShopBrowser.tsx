@@ -29,6 +29,7 @@ export function ShopBrowser({
   const [scale, setScale] = useState("all");
   const [brands, setBrands] = useState<string[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [allSeriesOpen, setAllSeriesOpen] = useState(false);
 
   const allSeries = useMemo(
     () => [...new Set(products.map((p) => p.subseries ?? p.series))].sort(),
@@ -63,6 +64,16 @@ export function ShopBrowser({
     return [...r].sort(by[sort]);
   }, [products, q, category, series, bracket, scale, brands, minGrade, sealedOnly, hideSold, sort]);
 
+  const active =
+    Number(category !== "all") +
+    series.length +
+    brands.length +
+    Number(price !== "all") +
+    Number(scale !== "all") +
+    Number(minGrade > 0) +
+    Number(sealedOnly) +
+    Number(hideSold);
+
   const toggleSeries = (s: string) =>
     setSeries((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]));
 
@@ -81,20 +92,35 @@ export function ShopBrowser({
   return (
     <div className="shop">
       <aside className={`filters ${filtersOpen ? "open" : ""}`}>
-        <div className="filter-group">
+        <div className="f-head">
+          <strong>
+            Filters{active > 0 && <span className="f-count">{active}</span>}
+          </strong>
+          <button onClick={reset} disabled={active === 0}>
+            Clear all
+          </button>
+        </div>
+        <div className="f-sec">
           <h4>Category</h4>
-          {[{ id: "all", name: "All" }, ...CATEGORIES].map((c) => (
-            <label key={c.id} className="radio">
-              <input type="radio" name="cat" checked={category === c.id} onChange={() => setCategory(c.id)} />
-              {c.name}
-              <span className="count">
-                {c.id === "all" ? products.length : products.filter((p) => p.category === c.id).length}
-              </span>
-            </label>
-          ))}
+          {[{ id: "all", name: "All cars" }, ...CATEGORIES].map((c) => {
+            const n = c.id === "all" ? products.length : products.filter((p) => p.category === c.id).length;
+            return (
+              <button
+                key={c.id}
+                className={`opt ${category === c.id ? "on" : ""}`}
+                disabled={n === 0}
+                aria-pressed={category === c.id}
+                onClick={() => setCategory(c.id)}
+              >
+                <span className="ring" />
+                {c.name}
+                <span className="count">{n ? n : "Soon"}</span>
+              </button>
+            );
+          })}
         </div>
         {allBrands.length > 1 && (
-          <div className="filter-group">
+          <div className="f-sec">
             <h4>Brand</h4>
             {allBrands.map((b) => (
               <label key={b} className="check">
@@ -109,16 +135,17 @@ export function ShopBrowser({
             ))}
           </div>
         )}
-        <div className="filter-group">
+        <div className="f-sec">
           <h4>Price</h4>
-          {[{ id: "all", label: "Any price" }, ...PRICE_BRACKETS].map((b) => (
-            <label key={b.id} className="radio">
-              <input type="radio" name="price" checked={price === b.id} onChange={() => setPrice(b.id)} />
-              {b.label}
-            </label>
-          ))}
+          <div className="pills">
+            {[{ id: "all", label: "Any" }, ...PRICE_BRACKETS].map((b) => (
+              <button key={b.id} className={`pill ${price === b.id ? "on" : ""}`} onClick={() => setPrice(b.id)}>
+                {b.label}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="filter-group">
+        <div className="f-sec">
           <h4>Scale</h4>
           <div className="pills">
             {["all", ...allScales].map((sc) => (
@@ -128,24 +155,35 @@ export function ShopBrowser({
             ))}
           </div>
         </div>
-        <div className="filter-group">
+        <div className="f-sec">
           <h4>Series</h4>
-          {allSeries.map((s) => (
+          {(allSeriesOpen ? allSeries : allSeries.slice(0, 6)).map((s) => (
             <label key={s} className="check">
               <input type="checkbox" checked={series.includes(s)} onChange={() => toggleSeries(s)} />
               {s}
             </label>
           ))}
+          {allSeries.length > 6 && (
+            <button className="f-more" onClick={() => setAllSeriesOpen((o) => !o)}>
+              {allSeriesOpen ? "Show fewer" : `Show all ${allSeries.length} series`}
+            </button>
+          )}
         </div>
-        <div className="filter-group">
-          <h4>Minimum condition</h4>
-          <select value={minGrade} onChange={(e) => setMinGrade(Number(e.target.value))}>
-            <option value={0}>Any grade</option>
-            <option value={10}>C10 Gem Mint</option>
-            <option value={9}>C9 Near Mint and up</option>
-            <option value={8}>C8 Excellent and up</option>
-            <option value={7}>C7 Very Good and up</option>
-          </select>
+        <div className="f-sec">
+          <h4>Condition</h4>
+          <div className="pills">
+            {[
+              [0, "Any"],
+              [10, "C10"],
+              [9, "C9+"],
+              [8, "C8+"],
+              [7, "C7+"],
+            ].map(([g, label]) => (
+              <button key={g} className={`pill ${minGrade === g ? "on" : ""}`} onClick={() => setMinGrade(g as number)}>
+                {label}
+              </button>
+            ))}
+          </div>
           <label className="check">
             <input type="checkbox" checked={sealedOnly} onChange={(e) => setSealedOnly(e.target.checked)} />
             Sealed on card only
@@ -155,9 +193,6 @@ export function ShopBrowser({
             Hide sold out
           </label>
         </div>
-        <button className="link-btn" onClick={reset}>
-          Clear all filters
-        </button>
       </aside>
 
       <div className="shop-main">
@@ -170,7 +205,7 @@ export function ShopBrowser({
             onChange={(e) => setQ(e.target.value)}
           />
           <button className="btn btn-ghost filters-toggle" onClick={() => setFiltersOpen((o) => !o)}>
-            Filters
+            Filters{active > 0 ? ` (${active})` : ""}
           </button>
           <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} aria-label="Sort">
             <option value="featured">Featured</option>

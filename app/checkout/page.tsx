@@ -205,6 +205,12 @@ export default function Checkout() {
               <span className="small">{formatPrice(p.price * qty)}</span>
             </div>
           ))}
+          {subtotal < site.freeShippingThreshold && (
+            <div className="ship-meter">
+              <span>Add <strong>{formatPrice(site.freeShippingThreshold - subtotal)}</strong> more for free delivery</span>
+              <div><i style={{ width: `${Math.min(100, (subtotal / site.freeShippingThreshold) * 100)}%` }} /></div>
+            </div>
+          )}
           <div className="row"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
           <div className="row"><span>Delivery</span><span>{shipping ? formatPrice(shipping) : "Free"}</span></div>
           <div className="row total"><span>Total</span><span>{formatPrice(subtotal + shipping)}</span></div>

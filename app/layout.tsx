@@ -6,10 +6,11 @@ import { BackToTop } from "@/components/BackToTop";
 import { Header } from "@/components/Header";
 import { THEME_SCRIPT } from "@/components/ThemeToggle";
 import { site } from "@/lib/site";
+import { siteUrl } from "@/lib/siteUrl";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(siteUrl()),
   title: { default: `${site.name} · ${site.tagline}`, template: `%s · ${site.name}` },
   description: "Hot Wheels, die-cast cars, collectibles and RC toys in Bangladesh. Real photos of every car, condition graded, cash on delivery, bKash and Nagad.",
 };

@@ -9,8 +9,8 @@ import path from "node:path";
  * - Locally, or before a database is connected: a JSON file. On Vercel that file lives in /tmp
  *   and is wiped regularly, so the admin page warns until Redis is connected.
  */
-const url = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
-const token = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
+const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 export const persistent = Boolean(url && token);
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { CarArt } from "@/components/CarArt";
 import { useCart } from "@/components/CartProvider";
+import { parseDetails } from "@/lib/parseDetails";
 import { getProductById } from "@/lib/products";
 import { formatPrice, PAYMENT_METHODS, shippingFor, site, whatsappLink, type Area, type PaymentMethod } from "@/lib/site";
 
@@ -41,6 +42,25 @@ export default function Checkout() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [placed, setPlaced] = useState<Placed | null>(null);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [paste, setPaste] = useState("");
+  const [filled, setFilled] = useState<string | null>(null);
+
+  function quickFill(text: string) {
+    const d = parseDetails(text);
+    const got: string[] = [];
+    if (d.name) (setName(d.name), got.push("name"));
+    if (d.phone) (setPhone(d.phone), got.push("mobile number"));
+    if (d.address) (setAddress(d.address), got.push("address"));
+    if (d.area) (setArea(d.area), got.push(d.area === "inside" ? "Inside Dhaka" : "Outside Dhaka"));
+    setFilled(
+      got.length
+        ? `Filled ${got.length > 1 ? `${got.slice(0, -1).join(", ")} and ${got.at(-1)}` : got[0]}. Please check them below.`
+        : "Couldn't find any details there. Please fill the boxes below.",
+    );
+  }
 
   const items = lines
     .map((l) => ({ ...l, product: getProductById(l.id) }))
@@ -138,17 +158,39 @@ export default function Checkout() {
         <div className="checkout-form">
           <section className="panel">
             <h3>Delivery details</h3>
+            <div className="quick-fill">
+              <label htmlFor="quick-fill">
+                <strong>Quick fill</strong> Paste your name, number and address in one go, in English or Bangla.
+              </label>
+              <textarea
+                id="quick-fill"
+                rows={2}
+                value={paste}
+                onChange={(e) => setPaste(e.target.value)}
+                onPaste={(e) => {
+                  const t = e.clipboardData.getData("text");
+                  if (t.trim()) setTimeout(() => quickFill(t));
+                }}
+                placeholder="e.g. Rahim Uddin, 01712345678, House 12, Road 5, Mirpur 10, Dhaka"
+              />
+              <div className="quick-fill-row">
+                <button type="button" className="btn btn-outline" disabled={!paste.trim()} onClick={() => quickFill(paste)}>
+                  Fill the form
+                </button>
+                {filled && <span className="small muted" role="status">{filled}</span>}
+              </div>
+            </div>
             <label className="field">
               <span>Full name</span>
-              <input name="name" required autoComplete="name" placeholder="Your name" />
+              <input name="name" required autoComplete="name" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} />
             </label>
             <label className="field">
               <span>Mobile number</span>
-              <input name="phone" required type="tel" inputMode="tel" autoComplete="tel" placeholder="01XXXXXXXXX" pattern="(\+?88)?01[3-9][0-9]{8}" title="Bangladeshi mobile number, like 01712345678" />
+              <input name="phone" required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="tel" autoComplete="tel" placeholder="01XXXXXXXXX" pattern="(\+?88)?01[3-9][0-9]{8}" title="Bangladeshi mobile number, like 01712345678" />
             </label>
             <label className="field">
               <span>Full address</span>
-              <textarea name="address" required rows={3} placeholder="House, road, area, thana, district" />
+              <textarea name="address" required rows={3} placeholder="House, road, area, thana, district" value={address} onChange={(e) => setAddress(e.target.value)} />
             </label>
             <div className="field">
               <span>Delivery area</span>

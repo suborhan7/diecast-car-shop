@@ -676,3 +676,11 @@ input, select { font: inherit; }
 [data-theme="dark"] .card:hover { box-shadow: 0 0 0 1px rgba(var(--glow), .45), 0 16px 44px rgba(var(--glow), .2); }
 [data-theme="dark"] .footer { border-top: 3px solid transparent; border-image: linear-gradient(90deg, var(--accent), var(--hi)) 1; }
 @media (max-width: 380px) { .logo { font-size: 14px; } .logo-mark { width: 36px; height: 36px; } }
+
+/* ---- Checkout quick fill ---- */
+.quick-fill { display: grid; gap: 8px; padding: 14px; margin-bottom: 18px; border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 12px; background: var(--accent-soft); }
+.quick-fill label { font-size: 14px; color: var(--muted); }
+.quick-fill label strong { color: var(--ink); margin-right: 6px; }
+.quick-fill textarea { width: 100%; font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); resize: vertical; }
+.quick-fill-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+[data-theme="dark"] .quick-fill textarea { background: var(--well); }

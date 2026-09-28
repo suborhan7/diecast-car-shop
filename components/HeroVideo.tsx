@@ -184,7 +184,7 @@ export function HeroVideo({ count }: { count: number }) {
             {kicker}
           </span>
           <span className="vhero-title">
-            Legends in <em>1:64.</em>
+            Small cars.<br /><em>Big legends.</em>
           </span>
         </h1>
         <p className="lead">

@@ -545,6 +545,7 @@ input, select { font: inherit; }
 @keyframes grain { 50% { transform: translate(-3%, 2%); } 100% { transform: translate(2%, -3%); } }
 .vhero-text { width: 100%; padding-top: 56px; padding-bottom: 80px; }
 .vhero-text > * { max-width: 560px; }
+.vhero-text > h1 { max-width: none; }
 .vhero .eyebrow { display: inline-flex; align-items: center; gap: 10px; letter-spacing: .14em; font-size: 12px; }
 .vhero .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--hi); }
 .vhero h1 { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 18px; font-style: italic; font-weight: 900; font-stretch: 118%; text-transform: uppercase; line-height: .96; letter-spacing: -.02em; font-size: clamp(40px, 6.4vw, 76px); }

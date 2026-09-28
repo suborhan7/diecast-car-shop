@@ -18,9 +18,9 @@ const LIGHTS_OUT = FIRST_LIGHT + 5 * LIGHT_EVERY + 600;
 const RACE_LENGTH = LIGHTS_OUT + 2600;
 
 const CARS = [
-  { body: "var(--accent)", num: "24", ink: "#fff" },
-  { body: "var(--hi)", num: "07", ink: "#15171c" },
-  { body: "#f2f3f5", num: "71", ink: "var(--accent)" },
+  { body: "var(--accent-bright)", num: "24", ink: "#08140f" },
+  { body: "var(--hi)", num: "07", ink: "#fff" },
+  { body: "#f2f3f5", num: "71", ink: "#0b6b4a" },
 ];
 
 function RaceCar({ body, num, ink, id }: { body: string; num: string; ink: string; id: string }) {

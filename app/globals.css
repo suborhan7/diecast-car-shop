@@ -403,33 +403,33 @@ input, select { font: inherit; }
   .card-actions { grid-template-columns: 1fr; }
 }
 
-/* ---- Dark mode: violet night with Bengal Green highlights ---- */
+/* ---- Dark mode: ultraviolet night with electric cyan highlights ---- */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  /* Base: violet night */
-  --bg: #0c0912;
-  --surface: #15101d;
-  --tint: #1e1729;
-  --well: #100c17;
-  --dark: #07050b;
-  --line: #2a2238;
-  --ring: #4a3f5c;
-  --ink: #f4f1fa;
-  --ink-soft: #d6cfe4;
-  --muted: #a39bb5;
-  /* Brand: violet buttons, Bengal Green highlights */
-  --accent: #b57bff;
-  --accent-bright: #b57bff;
-  --accent-hover: #c697ff;
-  --accent-deep: #7c3aed;
-  --accent-ink: #160b26;
-  --glow: 181, 123, 255;
-  --glow-bg: #1d1230;
+  /* Base: ultraviolet night */
+  --bg: #09091a;
+  --surface: #11122a;
+  --tint: #181a38;
+  --well: #0c0d20;
+  --dark: #05050f;
+  --line: #252846;
+  --ring: #40446a;
+  --ink: #f1f2fb;
+  --ink-soft: #d0d2ea;
+  --muted: #9a9dbd;
+  /* Brand: violet buttons, electric cyan highlights */
+  --accent: #8b7bff;
+  --accent-bright: #8b7bff;
+  --accent-hover: #aea3ff;
+  --accent-deep: #4f46e5;
+  --accent-ink: #0b0826;
+  --glow: 139, 123, 255;
+  --glow-bg: #17164a;
   --accent-soft: rgba(var(--glow), .12);
-  --hi: #34d399;
-  --blue: #6ee7b7;
-  --band-1: #3b1d6e;
-  --band-2: #0e7a52;
+  --hi: #22d3ee;
+  --blue: #67e8f9;
+  --band-1: #1e1b6e;
+  --band-2: #0e7490;
   --green: #4ade80;
   --shadow: 0 10px 30px rgba(0, 0, 0, .45);
 }

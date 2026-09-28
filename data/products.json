@@ -204,7 +204,7 @@
     "hex": "#8a8f98",
     "body": "coupe",
     "scale": "1:64",
-    "price": 0,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -214,8 +214,7 @@
     "status": "in-stock",
     "images": [],
     "description": "Hot Wheels Nissan Skyline GT-R, 1:64 scale, factory sealed on card. Real photos of this car are coming soon; message us on WhatsApp for a picture before you order.",
-    "addedOn": "2026-09-28",
-    "hidden": true
+    "addedOn": "2026-09-28"
   },
   {
     "id": "hw-001",
@@ -442,7 +441,7 @@
     "hex": "#8a8f98",
     "body": "coupe",
     "scale": "1:64",
-    "price": 0,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -452,8 +451,7 @@
     "status": "in-stock",
     "images": [],
     "description": "Hot Wheels Aston Martin Aramco F1 Team, 1:64 scale, factory sealed on card. Real photos of this car are coming soon; message us on WhatsApp for a picture before you order.",
-    "addedOn": "2026-09-28",
-    "hidden": true
+    "addedOn": "2026-09-28"
   },
   {
     "id": "hw-111",
@@ -626,7 +624,7 @@
     "hex": "#5b2c83",
     "body": "fantasy",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -640,8 +638,7 @@
     ],
     "description": "2026 Hot Wheels Fiat 500C from the HW Racers series (10/10), collector number 192/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-003",
@@ -658,7 +655,7 @@
     "hex": "#5a7a2a",
     "body": "truck",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -672,8 +669,7 @@
     ],
     "description": "2026 Hot Wheels Mountain Mauler from the Let's Race series (2/5), collector number 179/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-004",
@@ -690,7 +686,7 @@
     "hex": "#a8b41e",
     "body": "truck",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -704,8 +700,7 @@
     ],
     "description": "2026 Hot Wheels Erikenstein Rod from the Rod Squad series (1/10), collector number 117/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-005",
@@ -722,7 +717,7 @@
     "hex": "#eeeeee",
     "body": "truck",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -735,8 +730,7 @@
     ],
     "description": "2026 Hot Wheels Lil' Roar from the HW Dirt series (5/10), collector number 194/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-007",
@@ -753,7 +747,7 @@
     "hex": "#1f3fa8",
     "body": "fantasy",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -766,8 +760,7 @@
     ],
     "description": "2026 Hot Wheels El Segundo Coupe Clip from the Experimotors series (4/5), collector number 93/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-008",
@@ -784,7 +777,7 @@
     "hex": "#f2f2f2",
     "body": "fantasy",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -797,8 +790,7 @@
     ],
     "description": "2026 Hot Wheels Pass 'n Go from the Drop Tops series (1/5), collector number 5/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-009",
@@ -815,7 +807,7 @@
     "hex": "#1a3fb0",
     "body": "coupe",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -828,8 +820,7 @@
     ],
     "description": "2026 Hot Wheels Punk Rod from the Let's Race series (2/5), collector number 200/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-010",
@@ -846,7 +837,7 @@
     "hex": "#c62828",
     "body": "fantasy",
     "scale": "1:64",
-    "price": 450,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -859,8 +850,7 @@
     ],
     "description": "2026 Hot Wheels Spider-Mobile from the Screen Time series (5/10), collector number 195/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": true,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-012",
@@ -877,7 +867,7 @@
     "hex": "#1e4bb8",
     "body": "coupe",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -890,8 +880,7 @@
     ],
     "description": "2026 Hot Wheels Drift Box from the HW Euro series (1/10), collector number 65/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "hw-019",
@@ -908,7 +897,7 @@
     "hex": "#c2a878",
     "body": "truck",
     "scale": "1:64",
-    "price": 350,
+    "price": 500,
     "condition": {
       "score": 10,
       "packaging": "Sealed - Mint Card",
@@ -921,8 +910,7 @@
     ],
     "description": "2026 Hot Wheels Lil' Mad from the HW Wagons series (9/10), collector number 215/250. 1:64 scale, factory sealed on a clean card. The photos show the exact car you will receive.",
     "featured": false,
-    "addedOn": "2026-09-26",
-    "hidden": true
+    "addedOn": "2026-09-26"
   },
   {
     "id": "po-001",

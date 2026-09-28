@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container footer-grid">
         <div>
           <div className="logo">
-            <span className="logo-mark">DD</span>
+            <span className="logo-mark">BDC</span>
             {site.name}
           </div>
           <p className="muted">{site.tagline}.</p>

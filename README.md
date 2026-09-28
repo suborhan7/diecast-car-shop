@@ -1,4 +1,4 @@
-# Diecast Den
+# Bengal Diecast Club
 
 Online store for Hot Wheels, die-cast, collectibles and RC toys. Built with Next.js + TypeScript.
 

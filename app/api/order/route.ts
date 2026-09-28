@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   if ("error" in priced) return NextResponse.json({ error: priced.error }, { status: 409 });
 
   const d = new Date();
-  const id = `DD-${d.toISOString().slice(2, 10).replace(/-/g, "")}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+  const id = `BDC-${d.toISOString().slice(2, 10).replace(/-/g, "")}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
   const message = orderMessage(id, input, priced);
 
   // Optional: forward every order to a webhook (Google Sheets Apps Script, Discord, Make, Zapier…).

@@ -27,7 +27,7 @@ export function Header() {
       </div>
       <div className="container header-row">
         <Link href="/" className="logo" onClick={() => setOpen(false)}>
-          <span className="logo-mark">DD</span>
+          <span className="logo-mark">BDC</span>
           {site.name}
         </Link>
         <nav className={`nav ${open ? "open" : ""}`}>

@@ -1,6 +1,6 @@
 /** Store-wide settings. Change these to rebrand the site. */
 export const site = {
-  name: "Diecast Den",
+  name: "Bengal Diecast Club",
   tagline: "Hand-graded Hot Wheels, die-cast and RC for collectors in Bangladesh",
   email: "hello@example.com",
   phone: "+880 1XXX-XXXXXX",

@@ -684,3 +684,6 @@ input, select { font: inherit; }
 .quick-fill textarea { width: 100%; font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); resize: vertical; }
 .quick-fill-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 [data-theme="dark"] .quick-fill textarea { background: var(--well); }
+
+/* Dark header keeps the original violet + emerald look (shifty's pick) while the page uses ultraviolet + cyan. */
+[data-theme="dark"] .header { --accent: #b57bff; --accent-deep: #7c3aed; --glow: 181, 123, 255; --hi: #34d399; --bg: #0c0912; }

@@ -153,8 +153,8 @@ export function HeroVideo({ count }: { count: number }) {
           onEnded={() => setPhase("race")}
           poster={size === "810x1080" ? "/hero/poster-810.jpg" : "/hero/poster-1920.jpg"}
         >
-          {size && <source src={`/hero/hero-${size}.webm`} type="video/webm" />}
           {size && <source src={`/hero/hero-${size}.mp4`} type="video/mp4" />}
+          {size && <source src={`/hero/hero-${size}.webm`} type="video/webm" />}
         </video>
         <div className={`race ${go ? "go" : ""}`}>
           <div className="race-track">
@@ -175,7 +175,6 @@ export function HeroVideo({ count }: { count: number }) {
           </div>
         </div>
         <div className="vhero-shade" />
-        <div className="vhero-grain" />
       </div>
       <div className="container vhero-text">
         <span className="eyebrow">Bengal Diecast Club · Dhaka</span>
